@@ -7,7 +7,7 @@ namespace MusicAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class SongsController : ControllerBase
-    {
+    { 
         private static List<Song> _songs = new List<Song>
         {
             new Song{ 
@@ -33,6 +33,13 @@ namespace MusicAPI.Controllers
         public IEnumerable<Song> GetAllSongs()
         {
             return _songs;
+        }
+
+        [HttpPost]
+        public IActionResult SaveSong([FromBody] Song newSong)
+        {
+            _songs.Add(newSong);
+            return Ok();
         }
     }
 }
